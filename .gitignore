@@ -3,3 +3,4 @@ node_modules/
 uploads/
 data/submissions.json
 *.log
+.wrangler/
