@@ -11,7 +11,7 @@
     {
       "binding": "DB",
       "database_name": "bingo-db",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "105795a0-605f-4097-a5d6-c770cd18f26e"
     }
   ],
   "r2_buckets": [
