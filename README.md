@@ -1,37 +1,54 @@
 # Photo Bingo
 
-One-time recreation/event photo bingo app.
+One-time recreation/event photo bingo app for Cloudflare Workers, D1, and R2.
 
-## Run locally
+## Cloudflare setup
 
 ```bash
-npm start
+npm install
+npx wrangler d1 create bingo-db
+npx wrangler r2 bucket create bingo-photos
 ```
 
-Open:
+Copy the generated D1 database ID into `wrangler.jsonc`:
+
+```jsonc
+"database_id": "..."
+```
+
+Apply the database schema:
+
+```bash
+npx wrangler d1 migrations apply bingo-db --remote
+```
+
+Deploy:
+
+```bash
+npm run deploy
+```
+
+The app will be available at a stable Workers URL such as:
 
 ```text
-http://localhost:3000
+https://bingo.<your-subdomain>.workers.dev
 ```
 
-If port 3000 is already in use:
+## Local development
 
 ```bash
-PORT=3001 npm start
+npm install
+npx wrangler d1 migrations apply bingo-db --local
+npm run dev
 ```
-
-## Temporary public sharing with Cloudflare Tunnel
-
-```bash
-cloudflared tunnel --url http://localhost:3001
-```
-
-Share the generated `trycloudflare.com` URL with participants.
 
 ## Data
 
-- `data/board.json`: bingo square text
-- `data/submissions.json`: participant submissions, ignored by Git
-- `uploads/`: uploaded photos, ignored by Git
+- D1 stores bingo square text and participant submissions.
+- R2 stores uploaded photos.
 
-Uploaded photos and participant submissions are intentionally excluded from GitHub.
+## Notes
+
+- The participant page does not expose an admin link.
+- The admin page is still URL-accessible at `/admin.html`; add authentication before public production use.
+- Cloudflare Workers Free, D1 Free, and R2 Free tiers should be enough for a small one-time event.
