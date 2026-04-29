@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사진 빙고 관리자</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>관리자 확인</h1>
+        <p>사용자별 빙고판을 확인합니다.</p>
+      </div>
+      <nav>
+        <a href="/">참여자</a>
+        <a href="/admin.html" aria-current="page">관리자</a>
+      </nav>
+    </header>
+
+    <main class="admin-layout">
+      <section class="board-editor">
+        <div class="board-editor-head">
+          <div>
+            <h2>빙고 내용 수정</h2>
+            <p>저장하면 참여자와 관리자 빙고판에 함께 반영됩니다.</p>
+          </div>
+          <button id="toggleEditor" type="button">수정 열기</button>
+        </div>
+        <form id="boardForm" hidden>
+          <div id="boardFields" class="board-fields"></div>
+          <div class="form-actions">
+            <button type="submit">저장하기</button>
+            <span id="boardMessage" role="status"></span>
+          </div>
+        </form>
+      </section>
+      <section id="userTabs" class="user-tabs" aria-label="사용자 선택"></section>
+      <section id="adminList" class="user-board-list" aria-live="polite"></section>
+    </main>
+
+    <div id="photoModal" class="modal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="photo-panel" role="dialog" aria-modal="true" aria-labelledby="modalSquare">
+        <div class="modal-head">
+          <div>
+            <h2 id="modalSquare"></h2>
+            <p id="modalUser"></p>
+          </div>
+          <button class="icon-button" type="button" aria-label="닫기" data-close-modal>&times;</button>
+        </div>
+        <img id="modalImage" alt="" />
+        <div class="photo-meta">
+          <time id="modalTime"></time>
+        </div>
+        <div class="photo-actions">
+          <button id="deletePhoto" class="danger" type="button">사진 삭제</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>
