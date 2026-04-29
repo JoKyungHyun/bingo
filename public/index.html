@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사진 빙고</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>사진 빙고</h1>
+        <p>빙고 칸을 고르고 인증 사진을 올려 주세요.</p>
+      </div>
+    </header>
+
+    <main class="layout participant-layout">
+      <section class="board-section" aria-label="빙고판">
+        <div class="board-head">
+          <div>
+            <h2>오늘의 빙고판</h2>
+            <p id="playerName"></p>
+          </div>
+          <span id="progress">0 / 25 제출</span>
+        </div>
+        <div id="bingoBoard" class="bingo-board"></div>
+      </section>
+    </main>
+
+    <div id="uploadModal" class="modal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="submit-panel modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+          <h2 id="modalTitle">사진 업로드</h2>
+          <button class="icon-button" type="button" aria-label="닫기" data-close-modal>&times;</button>
+        </div>
+        <form id="uploadForm">
+          <label>
+            선택한 칸
+          <input id="selectedSquare" name="squareTitle" type="text" readonly required placeholder="빙고 칸을 선택하세요" />
+          </label>
+          <div id="currentPhoto" class="current-photo" hidden>
+            <span>현재 사진</span>
+            <img id="currentPhotoImage" alt="현재 제출한 사진" />
+          </div>
+          <input id="squareId" name="squareId" type="hidden" />
+          <input id="userId" name="userId" type="hidden" />
+          <input id="userLabel" name="userLabel" type="hidden" />
+          <label>
+            사진
+            <input name="photo" type="file" accept="image/*" required />
+          </label>
+          <button type="submit">제출하기</button>
+        </form>
+        <p id="message" role="status"></p>
+      </section>
+    </div>
+
+    <div id="nameModal" class="modal" hidden>
+      <div class="modal-backdrop"></div>
+      <section class="submit-panel modal-panel" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
+        <div class="modal-head">
+          <h2 id="nameTitle">이름 입력</h2>
+        </div>
+        <form id="nameForm">
+          <label>
+            이름
+            <input id="nameInput" name="name" type="text" maxlength="40" required placeholder="이름을 입력하세요" />
+          </label>
+          <button type="submit">시작하기</button>
+        </form>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
